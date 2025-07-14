@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="party.people.repository.keywords.KeywordsMapper">
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="indexId">
+        INSERT INTO totalkeyword (category, keywords)
+        VALUES (#{category}, #{keywords})
+    </insert>
+
+    <select id="findAll" resultType="keywords">
+        select *
+        from totalkeyword
+    </select>
+
+    <select id="findByCategory" resultType="keywords">
+        select *
+        from totalkeyword
+        where category = #{category}
+    </select>
+
+
+
+    <update id="update">
+        update totalkeyword
+        set keywords=#{keywords}
+        where category = #{category}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="party.people.repository.client.ClientMapper">
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="sequenceId">
+        INSERT INTO client (clientid, password, clientemail, keyword)
+        VALUES (#{clientId}, #{password}, #{clientEmail}, #{keyword})
+    </insert>
+
+    <select id="findAll" resultType="client">
+        select *
+        from client
+    </select>
+
+    <select id="findBySequenceId" resultType="client">
+        select *
+        from client
+        where sequenceid=#{sequenceId}
+    </select>
+
+    <select id="findByClientId" resultType="client">
+        select *
+        from client
+        where clientid=#{clientId}
+    </select>
+
+    <select id="findByClientEmail" resultType="client">
+        select *
+        from client
+        where clientEmail=#{clientEmail}
+    </select>
+
+    <select id="findPassword" resultType="client">
+        select *
+        from client
+        where clientid=#{clientId} and clientEmail=#{clientEmail}
+    </select>
+
+    <update id="update">
+        update client
+        set password=#{clientUpdateParam.password2},
+        clientEmail=#{clientUpdateParam.clientEmail},
+        keyword=#{clientUpdateParam.keyword}
+        where clientid = #{clientId}
+    </update>
+
+</mapper>

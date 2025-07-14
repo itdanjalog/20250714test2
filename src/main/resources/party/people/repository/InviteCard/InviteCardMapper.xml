@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="party.people.repository.InviteCard.InviteCardMapper">
+
+
+    <insert id="saveCard" useGeneratedKeys="true" keyProperty="sequenceId">
+        INSERT INTO INVITE_CARD (CLIENT_ID, PLACE_ID1, PLACE_ID2, PLACE_ID3, TITLE, TARGET_DATE, TARGET_TIME, MEETING_CONTENT, MEETING_PARTICIPANTS, CARD_SKIN)
+        VALUES (#{clientId}, #{placeId1}, #{placeId2}, #{placeId3}, #{title},
+        #{targetDate}, #{targetTime}, #{meetingContent},
+        #{meetingParticipants}, #{cardSkin}
+        )
+    </insert>
+
+    <select id="loadById" resultType="inviteCard">
+        select *
+        from invite_card
+        where client_id = #{clientId}
+    </select>
+
+    <select id="loadByIdPaging" resultType="inviteCard">
+        SELECT *
+        FROM invite_card
+        WHERE client_id = #{clientId}
+        ORDER BY sequenceid DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="loadCard" resultType="inviteCard">
+        select *
+        from invite_card
+        where sequenceid=#{sequenceId}
+    </select>
+</mapper>
